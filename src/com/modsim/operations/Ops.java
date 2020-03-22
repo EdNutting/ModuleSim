@@ -192,11 +192,8 @@ public class Ops {
                 }
                 catch (Exception e) {
                     // Clipboard contents may not be valid
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
-            }
-            else {
-                System.out.println("Nothing to paste");
             }
         }, "Paste", "Paste into the design from the application clipboard", ctrlV);
 

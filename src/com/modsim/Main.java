@@ -5,6 +5,9 @@ import com.modsim.simulator.Sim;
 import com.modsim.operations.OperationStack;
 import com.modsim.util.ModuleClipboard;
 import com.modsim.util.Selection;
+import com.modsim.util.XMLReader;
+
+import java.io.File;
 
 import javax.swing.*;
 
@@ -37,7 +40,17 @@ public class Main {
 
 				// Start sim ticking - sim is initialized below *before* this is called
 				sim.newSim();
-				sim.start();
+                sim.start();
+
+                if (args.length > 0) {
+                    try {
+                        File file = new File(args[0]);
+                        XMLReader.readFile(file);
+                    }
+                    catch (Exception e) {
+                        System.err.print("Could not read file: \"" + args[0] + "\": " + e.getMessage());
+                    }
+                }
 			}
 		});
 

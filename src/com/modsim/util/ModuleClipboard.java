@@ -191,7 +191,7 @@ public final class ModuleClipboard implements ClipboardOwner {
                     result = new String(Files.readAllBytes(file.toPath()));
                 }
             } catch (UnsupportedFlavorException | IOException ex) {
-                System.out.println(ex);
+                System.err.println(ex);
                 ex.printStackTrace();
             }
         }
@@ -199,7 +199,7 @@ public final class ModuleClipboard implements ClipboardOwner {
             try {
                 result = (String) contents.getTransferData(DataFlavor.stringFlavor);
             } catch (UnsupportedFlavorException | IOException ex) {
-                System.out.println(ex);
+                System.err.println(ex);
                 ex.printStackTrace();
             }
         }

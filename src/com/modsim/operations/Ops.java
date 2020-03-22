@@ -141,7 +141,7 @@ public class Ops {
             rotateCW, rotateCCW, rotate180,
             toggleSnap,
             labelEdit, labelBig, labelSmall,
-            pause, run, step, toggleRun, zoomIn, zoomOut, resetView, toggleAA, open, save, saveAs, fileNew, quit;
+            pause, run, step, toggleRun, zoomIn, zoomOut, resetView, toggleGrid, toggleAA, open, save, saveAs, fileNew, quit;
 
     static {
         // Keyboard shortcuts
@@ -153,6 +153,7 @@ public class Ops {
         KeyStroke ctrlO = KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK);
         KeyStroke ctrlS = KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK);
         KeyStroke ctrlL = KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK);
+        KeyStroke ctrlG = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_DOWN_MASK);
         KeyStroke ctrlShiftS = KeyStroke.getKeyStroke(KeyEvent.VK_S,
                 KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);
 
@@ -282,11 +283,14 @@ public class Ops {
         // View controls
         toggleAA = new DesignAction(event -> {
             Main.ui.view.useAA = !Main.ui.view.useAA;
-            //redraw
             Main.ui.view.flagStaticRedraw();
-        },
-                "Toggle anti-aliasing", "Toggles anti-aliased rendering in the viewport: " +
-                "disabling AA may improve performance on older machines.");
+        }, "Toggle anti-aliasing", "Toggles anti-aliased rendering in the viewport: "
+                + "disabling AA may improve performance on older machines.");
+
+        toggleGrid = new DesignAction(event -> {
+            Main.ui.view.showGrid = !Main.ui.view.showGrid;
+            Main.ui.view.flagStaticRedraw();
+        }, "Toggle grid", "Toggles rendering the grid.", ctrlG);
 
         // FileIO operations
         open = new DesignAction(event -> FileIO.open(),

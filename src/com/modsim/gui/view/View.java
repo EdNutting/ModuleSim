@@ -42,6 +42,7 @@ public class View extends JPanel {
     public BaseTool curTool = null;
 
     public boolean useAA = true;
+    public boolean showGrid = true;
 
     private int dynamicRefreshRate = 30;
 
@@ -120,15 +121,18 @@ public class View extends JPanel {
             staticG.setTransform(oldStatic);
             staticG.setColor(Colors.background);
             staticG.fillRect(0, 0, getWidth(), getHeight());
-            // Grid
-            staticG.setColor(Colors.grid);
-            double xD = (camX + getWidth() / 2);
-            double yD = (camY + getHeight() / 2);
-            double xOff = xD % (Main.sim.grid * zoom);
-            double yOff = yD % (Main.sim.grid * zoom);
-            staticG.translate(xOff, yOff);
-            drawGrid(staticG);
-            staticG.setTransform(oldStatic);
+
+            if (showGrid) {
+                // Grid
+                staticG.setColor(Colors.grid);
+                double xD = (camX + getWidth() / 2);
+                double yD = (camY + getHeight() / 2);
+                double xOff = xD % (Main.sim.grid * zoom);
+                double yOff = yD % (Main.sim.grid * zoom);
+                staticG.translate(xOff, yOff);
+                drawGrid(staticG);
+                staticG.setTransform(oldStatic);
+            }
 
             // Draw modules - static
             staticG.setTransform(oldStatic);
